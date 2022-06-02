@@ -6,7 +6,7 @@ This is a snake game made by Vue and TypeScript.
 
 ## must
 
-- [ ] basic element
+- [x] basic element
 - [ ] snake object
 - [ ] make snake can move
 - [ ] time engine
