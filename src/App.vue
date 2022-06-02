@@ -1,21 +1,37 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+// snake
+// time machine
+// food
+const grid = 10
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div
+    :style="{
+      width: `${15 * grid}px`,
+      height: `${15 * grid}px`,
+    }"
+  >
+    <div
+      style="background-color: black;position:absolute;"
+      :style="{
+        width: `${1 * grid}px`,
+        height: `${1 * grid}px`,
+        top: `${7 * grid}px`,
+        left: `${3 * grid}px`,
+      }"
+    />
+    <div
+      style="background-color: red;position:absolute;"
+      :style="{
+        width: `${1 * grid}px`,
+        height: `${1 * grid}px`,
+        top: `${3 * grid}px`,
+        left: `${3 * grid}px`,
+      }"
+    />
+  </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
