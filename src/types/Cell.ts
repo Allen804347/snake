@@ -1,5 +1,16 @@
-export default interface Cell {
+export enum Direction {
+  up,
+  down,
+  left,
+  right,
+}
+
+export class Cell {
+  constructor(x: number, y: number) {
+    this.x = x
+    this.y = y
+  }
+
   x: number
   y: number
-  next?: Cell
 }

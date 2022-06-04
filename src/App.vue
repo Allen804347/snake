@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Snake from './components/Snake.vue'
 // snake
 // time machine
 // food
@@ -14,15 +15,7 @@ const grid = 10
       border: `${borderSize}px solid black`,
     }"
   >
-    <div
-      style="background-color: black; position: absolute;"
-      :style="{
-        width: `${1 * grid}px`,
-        height: `${1 * grid}px`,
-        top: `${borderSize + (7 * grid)}px`,
-        left: `${borderSize + (3 * grid)}px`,
-      }"
-    />
+    <Snake />
     <div
       style="background-color: red; position: absolute;"
       :style="{
