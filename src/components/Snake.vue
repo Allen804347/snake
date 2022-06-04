@@ -1,28 +1,64 @@
 <script setup lang="ts">
-import { Cell, Direction } from '../types/Cell'
+import { Cell, Direction, reverseDirection } from '../types/Cell'
 import CellComponent from './Cell.vue'
+
 const x = 8
 const y = 8
-const cells: Cell[] = [new Cell(x, y), new Cell(x - 1, y), new Cell(x - 2, y)]
+
+const cells: Cell[] = $ref([new Cell(x, y), new Cell(x - 1, y), new Cell(x - 2, y)])
 
 // direction and keyboard event
-let direction = $ref(Direction.right)
+let candidateDirection: Direction = Direction.right
+let direction: Direction = Direction.right
+
 window.addEventListener('keyup', ({ key }) => {
-  if (key === 'ArrowUp') {
-    direction = Direction.up
+  // default direction is current value
+  let tempDirection: Direction = direction
+  if (key === Direction.up)
+    tempDirection = Direction.up
+
+  if (key === Direction.down)
+    tempDirection = Direction.down
+
+  if (key === Direction.left)
+    tempDirection = Direction.left
+
+  if (key === Direction.right)
+    tempDirection = Direction.right
+
+  // snake can not turn reverse direction
+  if (tempDirection === reverseDirection[direction])
     return
-  }
-  if (key === 'ArrowDown') {
-    direction = Direction.down
-    return
-  }
-  if (key === 'ArrowLeft') {
-    direction = Direction.left
-    return
-  }
-  if (key === 'ArrowRight')
-    direction = Direction.right
+
+  // put key event to candidate direction, so direction wont updated before move been invoke
+  candidateDirection = tempDirection
 })
+
+// move
+const move = () => {
+  let { x: tempX, y: tempY } = cells[0]
+  if (candidateDirection === Direction.up)
+    tempY -= 1
+  if (candidateDirection === Direction.down)
+    tempY += 1
+  if (candidateDirection === Direction.right)
+    tempX += 1
+  if (candidateDirection === Direction.left)
+    tempX -= 1
+
+  // update direction
+  direction = candidateDirection
+
+  // remove tail
+  cells.pop()
+
+  // add new head
+  cells.unshift(new Cell(tempX, tempY))
+}
+
+setInterval(() => {
+  move()
+}, 1000)
 </script>
 
 <template>

@@ -1,8 +1,15 @@
 export enum Direction {
-  up,
-  down,
-  left,
-  right,
+  up = 'ArrowUp',
+  down = 'ArrowDown',
+  left = 'ArrowLeft',
+  right = 'ArrowRight',
+}
+
+export const reverseDirection = {
+  [Direction.up]: Direction.down,
+  [Direction.down]: Direction.up,
+  [Direction.left]: Direction.right,
+  [Direction.right]: Direction.left,
 }
 
 export class Cell {
