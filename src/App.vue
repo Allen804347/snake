@@ -1,10 +1,29 @@
 <script setup lang="ts">
 import Snake from './components/Snake.vue'
 // snake
-// time machine
+const MSperTick = 1000
 // food
 const borderSize = 1
 const grid = 10
+
+// time engine
+let task: number
+const snake = $ref(null)
+
+const start = (): void => {
+  if (task !== null)
+    clearInterval(task)
+
+  task = setInterval(() => {
+    // snake move
+    snake.move()
+    // check fruit
+    // growth snake if need
+    // check snake is live or death
+    // renew fruit if need
+  }, MSperTick)
+}
+start()
 </script>
 
 <template>
@@ -15,7 +34,7 @@ const grid = 10
       border: `${borderSize}px solid black`,
     }"
   >
-    <Snake />
+    <Snake ref="snake" />
     <div
       style="background-color: red; position: absolute;"
       :style="{
