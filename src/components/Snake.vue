@@ -56,9 +56,9 @@ const move = () => {
   cells.unshift(new Cell(tempX, tempY))
 }
 
-setInterval(() => {
-  move()
-}, 1000)
+defineExpose({
+  move,
+})
 </script>
 
 <template>
