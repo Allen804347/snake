@@ -33,9 +33,11 @@ window.addEventListener('keyup', ({ key }) => {
   // put key event to candidate direction, so direction wont updated before move been invoke
   candidateDirection = tempDirection
 })
-
+let isDead = false
 // move
 const move = () => {
+  if (isDead === true)
+    return
   let { x: tempX, y: tempY } = cells[0]
   if (candidateDirection === Direction.up)
     tempY -= 1
@@ -56,8 +58,27 @@ const move = () => {
   cells.unshift(new Cell(tempX, tempY))
 }
 
+const die = () => {
+  isDead = true
+}
+
+const getHead = () => {
+  return cells[0]
+}
+
+const checkCollision = () => {
+  for (let i = 1; i < cells.length; i++) {
+    if (cells[0].x === cells[i].x && cells[0].y === cells[i].y)
+      return true
+  }
+  return false
+}
+
 defineExpose({
   move,
+  die,
+  getHead,
+  checkCollision,
 })
 </script>
 

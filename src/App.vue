@@ -4,6 +4,7 @@ import Snake from './components/Snake.vue'
 const MSperTick = 1000
 // food
 const borderSize = 1
+const mapSize = 15
 const grid = 10
 
 // time engine
@@ -20,6 +21,9 @@ const start = (): void => {
     // check fruit
     // growth snake if need
     // check snake is live or death
+    const { x, y } = snake.getHead()
+    if (snake.checkCollision() || x <= 0 || y <= 0 || x > mapSize || y > mapSize)
+      snake.die()
     // renew fruit if need
   }, MSperTick)
 }
