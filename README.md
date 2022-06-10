@@ -9,9 +9,9 @@ This is a snake game made by Vue and TypeScript.
 - [x] basic element
 - [x] snake object
 - [x] make snake can move
-- [ ] time engine
+- [x] time engine
 - [ ] death detect
-- [ ] eatable object
+- [ ] fruit
 - [ ] let snake growth
 
 ## advance
