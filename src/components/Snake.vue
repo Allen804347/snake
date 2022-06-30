@@ -66,12 +66,16 @@ const getHead = () => {
   return cells[0]
 }
 
-const checkCollision = () => {
-  for (let i = 1; i < cells.length; i++) {
-    if (cells[0].x === cells[i].x && cells[0].y === cells[i].y)
+const checkCollision = (x: number, y: number, startFrom = 0) => {
+  for (let i = startFrom; i < cells.length; i++) {
+    if (x === cells[i].x && y === cells[i].y)
       return true
   }
   return false
+}
+
+const checkSelfCollision = (x = cells[0].x, y = cells[0].y) => {
+  return checkCollision(x, y, 1)
 }
 
 defineExpose({
@@ -79,6 +83,7 @@ defineExpose({
   die,
   getHead,
   checkCollision,
+  checkSelfCollision,
 })
 </script>
 
