@@ -34,6 +34,7 @@ window.addEventListener('keyup', ({ key }) => {
   candidateDirection = tempDirection
 })
 let isDead = false
+let last: Cell = new Cell(x - 3, y)
 // move
 const move = () => {
   if (isDead === true)
@@ -52,7 +53,7 @@ const move = () => {
   direction = candidateDirection
 
   // remove tail
-  cells.pop()
+  last = cells.pop() || last
 
   // add new head
   cells.unshift(new Cell(tempX, tempY))
@@ -78,9 +79,14 @@ const checkSelfCollision = (x = cells[0].x, y = cells[0].y) => {
   return checkCollision(x, y, 1)
 }
 
+const growth = () => {
+  cells.push(last)
+}
+
 defineExpose({
   move,
   die,
+  growth,
   getHead,
   checkCollision,
   checkSelfCollision,

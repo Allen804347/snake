@@ -2,7 +2,7 @@
 import { onMounted } from '@vue/runtime-core'
 import Snake from './components/Snake.vue'
 // snake
-const MSperTick = 500
+const MSperTick = 250
 // food
 const borderSize = 1
 const mapSize = 25
@@ -40,6 +40,7 @@ const start = (): void => {
     // check fruit
     if (snake.checkCollision(fruitX, fruitY)) {
       // growth snake if need
+      snake.growth()
       // renew fruit if need
       renewFruit()
     }
