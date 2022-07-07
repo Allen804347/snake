@@ -12,7 +12,7 @@ This is a snake game made by Vue and TypeScript.
 - [x] time engine
 - [x] death detect
 - [x] fruit
-- [ ] let snake growth
+- [x] let snake growth
 
 ## advance
 
