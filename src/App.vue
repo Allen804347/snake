@@ -2,7 +2,7 @@
 import { onMounted } from '@vue/runtime-core'
 import Snake from './components/Snake.vue'
 // snake
-const MSperTick = 250
+let MSperTick = 250
 // food
 const borderSize = 1
 const mapSize = 25
@@ -47,6 +47,9 @@ const start = (): void => {
       snake.growth()
       // renew fruit if need
       renewFruit()
+      MSperTick *= 0.95
+      clearInterval(task)
+      start()
     }
     // check snake is live or death
     const { x, y } = snake.getHead()
