@@ -22,8 +22,8 @@ let fruitY = $ref(0)
 
 // random show
 const renewFruit = () => {
-  const newX = Math.ceil(Math.random() * mapSize)
-  const newY = Math.ceil(Math.random() * mapSize)
+  const newX = Math.floor(Math.random() * mapSize)
+  const newY = Math.floor(Math.random() * mapSize)
   // fruit should not born on snake
   if (!snake.checkCollision(newX, newY)) {
     fruitX = newX
@@ -50,7 +50,7 @@ const start = (): void => {
     }
     // check snake is live or death
     const { x, y } = snake.getHead()
-    if (snake.checkSelfCollision() || x <= 0 || y <= 0 || x >= mapSize || y >= mapSize)
+    if (snake.checkSelfCollision() || x < 0 || y < 0 || x >= mapSize || y >= mapSize)
       snake.die()
   }, MSperTick)
 }
