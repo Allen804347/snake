@@ -1,11 +1,14 @@
 <script setup lang="ts">
 // import Cell from '../types/Cell'
-const { positionX, positionY } = defineProps<{
+const {
+  baseTop, baseLeft, positionX, positionY,
+} = defineProps<{
   positionX: number
   positionY: number
+  baseTop: number
+  baseLeft: number
 }>()
 
-const borderSize = 1
 const gridSize = 10
 </script>
 
@@ -15,8 +18,8 @@ const gridSize = 10
     :style="{
       width: `${1 * gridSize}px`,
       height: `${1 * gridSize}px`,
-      top: `${borderSize + (positionY * gridSize)}px`,
-      left: `${borderSize + (positionX * gridSize)}px`,
+      top: `${baseTop + (positionY * gridSize)}px`,
+      left: `${baseLeft + (positionX * gridSize)}px`,
     }"
   />
 </template>

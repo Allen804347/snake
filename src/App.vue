@@ -12,6 +12,10 @@ const grid = 10
 let task: number
 // snake
 const snake = $ref(null)
+const base = $ref(null)
+let baseTop = $ref(borderSize)
+let baseLeft = $ref(borderSize)
+
 // fruit
 let fruitX = $ref(0)
 let fruitY = $ref(0)
@@ -46,33 +50,38 @@ const start = (): void => {
     }
     // check snake is live or death
     const { x, y } = snake.getHead()
-    if (snake.checkSelfCollision() || x <= 0 || y <= 0 || x > mapSize || y > mapSize)
+    if (snake.checkSelfCollision() || x <= 0 || y <= 0 || x >= mapSize || y >= mapSize)
       snake.die()
   }, MSperTick)
 }
 start()
 
 // init
-onMounted(renewFruit)
+onMounted(() => {
+  renewFruit()
+  baseTop = base.offsetTop + borderSize
+  baseLeft = base.offsetLeft + borderSize
+})
 // can be eat
 </script>
 
 <template>
   <div
+    ref="base"
     :style="{
       width: `${mapSize * grid}px`,
       height: `${mapSize * grid}px`,
       border: `${borderSize}px solid black`,
     }"
   >
-    <Snake ref="snake" />
+    <Snake ref="snake" :base-top="baseTop" :base-left="baseLeft" />
     <div
       style="background-color: red; position: absolute;"
       :style="{
         width: `${1 * grid}px`,
         height: `${1 * grid}px`,
-        top: `${borderSize + (fruitY * grid)}px`,
-        left: `${borderSize + (fruitX * grid)}px`,
+        top: `${baseTop + (fruitY * grid)}px`,
+        left: `${baseLeft + (fruitX * grid)}px`,
       }"
     />
   </div>

@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { Cell, Direction, reverseDirection } from '../types/Cell'
 import CellComponent from './Cell.vue'
-
+const {
+  baseTop,
+  baseLeft,
+} = defineProps<{
+  baseTop: number
+  baseLeft: number
+}>()
 const x = 8
 const y = 8
 
@@ -97,6 +103,8 @@ defineExpose({
   <CellComponent
     v-for="cell, index in cells"
     :key="index"
+    :base-top="baseTop"
+    :base-left="baseLeft"
     :position-x="cell.x"
     :position-y="cell.y"
   />
