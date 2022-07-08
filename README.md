@@ -17,7 +17,7 @@ This is a snake game made by Vue and TypeScript.
 ## advance
 
 - [x] adjust border and block position
-- [ ] speed up by level
+- [x] speed up by level
 - [ ] fancy style
 - [ ] no border mode
 - [ ] auto pilot mode
